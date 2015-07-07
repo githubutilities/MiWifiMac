@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-script minSpecVersion="1.000000" authoringTool="com.apple.PackageMaker" authoringToolVersion="3.0.5" authoringToolBuild="196.1">
+    <title>Ralink Wireless Utility</title>
+    <options customize="never" allow-external-scripts="no"/>
+    <domains enable_localSystem="true"/>
+    <welcome file="Welcome.rtfd"/>
+    <choices-outline>
+        <line choice="choice36"/>
+    </choices-outline>
+    <choice id="choice36" title="RT2870Resources">
+        <pkg-ref id="com.Ralink.RT2870.pkg"/>
+    </choice>
+    <pkg-ref id="com.Ralink.RT2870.pkg" installKBytes="14156" version="5.0" auth="Root" onConclusion="RequireRestart">#rt2870resources.pkg</pkg-ref>
+</installer-script>

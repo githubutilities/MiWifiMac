@@ -1,0 +1,23 @@
+
+<pkg-info format-version="2" identifier="com.Ralink.RT2870.pkg" version="5.0" install-location="/RT2870Resources" auth="root" postinstall-action="restart">
+    <payload installKBytes="14156" numberOfFiles="117"/>
+    <scripts>
+        <postinstall file="./postinstall"/>
+    </scripts>
+    <bundle id="com.Ralink.RAWLAPI" CFBundleIdentifier="com.Ralink.RAWLAPI" path="./API/RaWLAPI.framework" CFBundleVersion="1.0.2.3"/>
+    <bundle id="com.Ralink.driver.RT2870USBWirelessDriver" CFBundleIdentifier="com.Ralink.driver.RT2870USBWirelessDriver" path="./Driver/Leopard/RT2870USBWirelessDriver.kext" CFBundleVersion="4.2.9"/>
+    <bundle id="com.Ralink.driver.RT2870USBWirelessDriver" CFBundleIdentifier="com.Ralink.driver.RT2870USBWirelessDriver" path="./Driver/Lion/RT2870USBWirelessDriver.kext" CFBundleVersion="4.2.9"/>
+    <bundle id="com.Ralink.driver.RT2870USBWirelessDriver" CFBundleIdentifier="com.Ralink.driver.RT2870USBWirelessDriver" path="./Driver/Mavericks/RT2870USBWirelessDriver.kext" CFBundleVersion="4.2.9"/>
+    <bundle id="com.Ralink.driver.RT2870USBWirelessDriver" CFBundleIdentifier="com.Ralink.driver.RT2870USBWirelessDriver" path="./Driver/MountainLion/RT2870USBWirelessDriver.kext" CFBundleVersion="4.2.9"/>
+    <bundle id="com.Ralink.driver.RT2870USBWirelessDriver" CFBundleIdentifier="com.Ralink.driver.RT2870USBWirelessDriver" path="./Driver/SnowLeopard/RT2870USBWirelessDriver.kext" CFBundleVersion="4.2.9"/>
+    <bundle id="com.Ralink.RaConfig" CFBundleIdentifier="com.Ralink.RaConfig" path="./UI/Ralink Wireless Utility/WirelessUtility.app" CFBundleVersion="5.0.0.01"/>
+    <bundle-version>
+        <bundle id="com.Ralink.RAWLAPI"/>
+        <bundle id="com.Ralink.driver.RT2870USBWirelessDriver"/>
+        <bundle id="com.Ralink.driver.RT2870USBWirelessDriver"/>
+        <bundle id="com.Ralink.driver.RT2870USBWirelessDriver"/>
+        <bundle id="com.Ralink.driver.RT2870USBWirelessDriver"/>
+        <bundle id="com.Ralink.driver.RT2870USBWirelessDriver"/>
+        <bundle id="com.Ralink.RaConfig"/>
+    </bundle-version>
+</pkg-info>

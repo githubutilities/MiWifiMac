@@ -1,0 +1,65 @@
+#!/bin/sh
+#. /etc/rc.common
+
+folder="Ralink Wireless Utility"
+utility="WirelessUtility"
+
+LeopardMajorVersion="9."
+SnowLeopardMajorVersion="10"
+LionMajorVersion="11"
+MountainLionMajorVersion="12"
+MavericksMajorVersion="13"
+
+ThisVersion=`uname -r`
+echo ThisVersion=$ThisVersion
+
+ThisMajorVersion=${ThisVersion:0:2}
+echo ThisMajorVersion=$ThisMajorVersion
+
+case $ThisMajorVersion in
+	$LeopardMajorVersion)		OsName="Leopard";;
+	$SnowLeopardMajorVersion)	OsName="SnowLeopard";;
+	$LionMajorVersion)		OsName="Lion";;
+	$MountainLionMajorVersion)	OsName="MountainLion";;
+	$MavericksMajorVersion)		OsName="Mavericks";;
+esac
+
+###### Install Driver ######
+sudo cp -R /RT2870Resources/Driver/$OsName/RT2870USBWirelessDriver.kext /System/Library/Extensions/RT2870USBWirelessDriver.kext
+
+sudo chown -R root:wheel /System/Library/Extensions/RT2870USBWirelessDriver.kext
+sudo chmod -R 755 /System/Library/Extensions/RT2870USBWirelessDriver.kext
+#sudo kextload -v /System/Library/Extensions/RT2870USBWirelessDriver.kext
+#sudo touch /System/Library/Extensions
+
+if [ $ThisMajorVersion != $LeopardMajorVersion ]
+then
+sudo kextcache -system-prelinked-kernel
+sudo kextcache -system-caches
+#sudo kextcache -v -1 -t -m /System/Library/Caches/com.apple.kext.caches/Startup/Extensions.mkext /System/Library/Extensions
+#else
+#sudo touch /System/Library/Extensions
+fi
+
+###### Install API ######
+sudo cp -R /RT2870Resources/API/RaWLAPI.framework /Library/Frameworks/RaWLAPI.framework
+
+sudo chown -R root:wheel /Library/Frameworks/RaWLAPI.framework
+sudo chmod -R 755 /Library/Frameworks/RaWLAPI.framework
+
+###### Install UI ######
+sudo cp -R /RT2870Resources/UI/"$folder" /Applications/"$folder"
+
+sudo chmod -R 777 /RT2870Resources/UI/"$folder" /Applications/"$folder"
+
+###### Install CommandServer ######
+sudo cp -R /RT2870Resources/Other/WiFiUtilityStartUp /System/Library/StartupItems/WiFiUtilityStartUp
+
+sudo chown -R root:wheel /System/Library/StartupItems/WiFiUtilityStartUp
+sudo chmod -R 755 /System/Library/StartupItems/WiFiUtilityStartUp
+
+###### Modify LoginItem ######
+/Applications/"$folder"/LoginItem -stringArg /Applications/"$folder"/$utility.app -boolArg YES
+
+###### Remove install temp files ######
+sudo rm -R /RT2870Resources
